@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="navigate">
+<li><a href="{% url 'logout' %}">Logout</a></li>
+<li><a href="{% url 'home' %}">Cập nhật hàng hóa</a></li>
+</ul>
+    <form method="GET" action="{% url 'search' %}">
+        <h3>Tìm kiếm theo tên hàng</h3>
+        <input type="text" name="q" placeholder="Tim"/>   
+    </form>      
+
+    {% if members.count == 0 %}
+    <h2>Không tìm thấy sản phẩm có chứa từ khóa "{{q}}"</h2>
+    {% else %}
+    <table>
+        <thead>
+        <tr>
+        <th></th>
+        <th>Ten hang</th>
+        <th>ID</th>
+        <th>DVT</th>
+        <th>So luong</th>
+        <th>Don gia</th>
+        <th></th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for member in members %}
+        <tr>
+            <td><a href="{% url 'update' member.id %}">Chi tiết</a></td>
+            <td>{{member.tenhang}}</td>
+            <td>00{{member.id}}</td>
+            <td>{{member.dvt}}</td>
+            <td>{{member.soluong}}</td>
+            <td>{{member.dongia}}</td>
+            <td><a href="{% url 'delete' member.id %}">Xóa</a></td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .container {
+        width: 320px;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+       
+;
+    }
+
+    button {
+        position: relative;
+        padding : 5px;
+    }
+
+    form {
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  h4 {
+      color: red
+  }
+
+  .messages {
+    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  bottom: 200px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+</style>
+<body>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h3>Trang đăng nhập</h3>
+        <div class='container'>
+            <label>Tên đăng nhập:</label>
+            <input type="text" name="username" placeholder="nhap tai khoan">
+            <label>Mật khẩu: </label>
+            <input type="password" name="password" placeholder="nhap mk">
+            </div>
+        <button type="submit">Đăng nhập</button>
+        <h4>*tên đăng nhập: thanhhy98, mật khẩu: thanh123</h4>
+    </form>
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+    </div>
+</body>
+</html>
